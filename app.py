@@ -419,7 +419,7 @@ def format_indo(tgl):
 
 
 FILE_DB = "database/surat.xlsx"
-df = pd.read_excel(FILE_DB) if os.path.exists(FILE_DB) else pd.DataFrame()
+df = pd.read_excel(FILE_DB, engine="openpyxl")
 
 def generate_docx(data):
         base_dir = os.path.dirname(os.path.abspath(__file__))
