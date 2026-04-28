@@ -418,7 +418,7 @@ def format_indo(tgl):
     return f"{tgl.day} {bulan[tgl.month-1]} {tgl.year}"
 
 
-FILE_DB = r"database/surat.xlsx"
+FILE_DB = "database/surat.xlsx"
 df = pd.read_excel(FILE_DB) if os.path.exists(FILE_DB) else pd.DataFrame()
 
 def generate_docx(data):
