@@ -3,3 +3,4 @@ pandas
 jinja2
 docxtpl
 python-docx
+openpyxl
