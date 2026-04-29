@@ -737,6 +737,8 @@ elif menu == "Buat Surat":
                         data["file_path"] = file_path
                         simpan_data(data)
 
+                        df = pd.read_excel(FILE_DB, engine="openpyxl")
+
                         st.success("✅ Surat berhasil dibuat!")
                         st.download_button("📄 Download Word", docx_bytes, file_name=os.path.basename(file_path))
 
