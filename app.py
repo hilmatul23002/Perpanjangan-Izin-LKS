@@ -430,10 +430,6 @@ def generate_docx(data):
 
         doc = DocxTemplate(template_path)
 
-        logo_path = os.path.join(base_dir, "logo.jpg")
-        if os.path.exists(logo_path):
-            data["logo"] = InlineImage(doc, logo_path, width=Mm(25))
-
         doc.render(data)
 
         tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".docx")
