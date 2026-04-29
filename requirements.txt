@@ -2,5 +2,5 @@ streamlit
 pandas==2.2.2
 openpyxl==3.1.2
 jinja2
-docxtpl
-python-docx
+docxtpl==0.16.7
+python-docx==0.8.11
