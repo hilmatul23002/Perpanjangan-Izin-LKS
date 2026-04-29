@@ -3,15 +3,17 @@
 import pandas as pd
 import os
 
-FILE_DB = r"E:\A KULIAH\SEMESTER 5 6\MAGANG\dashboardLKSA\generatesurat\database\surat.xlsx"
+FILE_DB = "database/surat.xlsx"
 
 def simpan_data(data):
-    if os.path.exists(FILE_DB):
-        df = pd.read_excel(FILE_DB)
-    else:
-        df = pd.DataFrame()
+    df_new = pd.DataFrame([data])
 
-    df = pd.concat([df, pd.DataFrame([data])], ignore_index=True)
+    if os.path.exists(FILE_DB):
+        df_old = pd.read_excel(FILE_DB)
+        df = pd.concat([df_old, df_new], ignore_index=True)
+    else:
+        df = df_new
+
     df.to_excel(FILE_DB, index=False)
 
 def load_data():
