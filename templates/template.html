@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+@page {
+    size: F4;
+    margin-top: 2cm;
+    margin-bottom: 1cm;
+    margin-left: 3cm;
+    margin-right: 3cm;
+}
+
+body {
+    font-family: "Arial", serif;
+    font-size: 12pt; /* setara Word 12 */
+    line-height: 1.1;
+    padding: 1cm 1cm 1cm 3cm;
+}
+
+.header-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 5px;
+}
+
+.logo-cell {
+    width: 90px;
+    vertical-align: top;
+    text-align: center;
+}
+
+.text-cell {
+    text-align: center;
+    padding-right: 90px; /* biar benar-benar center terhadap halaman */
+}
+
+.logo {
+    width: 90px;
+    height: auto;
+}
+
+.header-title {
+    font-weight: bold;
+    font-size: 11pt;
+}
+
+.header-sub {
+    font-weight: bold;
+    font-size: 13pt;
+}
+
+.header-address {
+    font-size: 10pt;
+    margin-top: 4px;
+}
+
+.kop-line {
+    border: none;
+    border-top: 3px solid black;
+    margin-top: 8px;
+    margin-bottom: 15px;
+}
+
+.header-text {
+    flex: 1;
+    text-align: center;
+}
+
+.logo {
+    height: 100px;
+    width: auto;
+    display: block;
+}
+
+.judul {
+    font-weight: bold;
+    font-size: 13pt;
+    text-align: center;
+    margin-top: 16px;
+}
+
+.subjudul {
+    font-weight: bold;
+    font-size: 11pt;
+    text-align: center;
+    margin-top: 6px;
+}
+
+.nomor {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.content {
+    margin-top: 16px;
+    text-align: justify;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+.table td {
+    padding: 4px 6px;
+    vertical-align: top;
+}
+
+.label {
+    width: 250px;
+}
+
+.sub {
+    padding-left: 30px;
+}
+
+.colon {
+    width: 10px;
+    text-align: center;
+}
+
+.ttd {
+    margin-top: 30px;
+    width: 100%;
+}
+
+.ttd-kanan {
+    width: 50%;
+    float: right;
+    text-align: center;
+}
+
+.footer {
+    margin-top: 30px;
+    font-size: 11pt;
+}
+
+.qr {
+    margin-top: 15px;
+}
+
+.header-text {
+    flex: 1;
+    text-align: center;
+}
+
+</style>
+</head>
+
+<body>
+
+<table class="header-table">
+    <tr>
+        <td class="logo-cell">
+            <img src="{{logo}}" class="logo">
+        </td>
+        <td class="text-cell">
+            <div class="header-title">PEMERINTAH KABUPATEN LUMAJANG</div>
+            <div class="header-sub">DINAS SOSIAL, PEMBERDAYAAN PEREMPUAN</div>
+            <div class="header-sub">DAN PERLINDUNGAN ANAK</div>
+            <div class="header-address">
+                Jalan Pisang Gajih Nomor 1, Kelurahan Kepuharjo, Kecamatan Lumajang,
+                Kabupaten Lumajang, Jawa Timur 67316.<br>
+                Telepon (0334) 888155, Faksimile (0334) 888155,
+                Laman dinsos.lumajangkab.go.id,
+                dinassosiallumajang@gmail.com
+            </div>
+        </td>
+    </tr>
+</table>
+
+<hr class="kop-line">
+
+<div class="judul">
+    SURAT TANDA PENDAFTARAN
+</div>
+
+<div class="subjudul">
+    Surat Tanda Pendaftaran (STP)  Yayasan Sosial / Lembaga Swadaya Masyarakat-Usaha<br>
+    Kesejahteraan Sosial (LSM-UKS) / Lembaga Kesejahteraan Sosial (LKS)
+</div>
+
+<div class="nomor">
+    NOMOR : {{nomor}}
+</div>
+
+<div class="content">
+    Pemerintah Kabupaten Lumajang Berdasarkan Peraturan Menteri Sosial Republik Indonesia Nomor 5 Tahun 2024 Tentang Lembaga Kesejahteraan Sosial memberikan Surat Tanda Pendaftaran kepada:
+</div>
+
+<table class="table">
+    <tr><td class="colon">1. </td><td class="label">Nama</td><td class="colon">:</td><td>{{nama}}</td></tr>
+    <tr><td></td><td class="label">NPWP</td><td class="colon">:</td><td>{{npwp}}</td></tr>
+    <tr><td></td><td class="label">Alamat</td><td class="colon">:</td><td>{{alamat}}</td></tr>
+    <tr><td>2. </td><td class="label">Akte Pendirian</td><td class="colon"></td><td></td></tr>
+    <tr><td></td><td class="label sub">Notaris</td><td class="colon">:</td><td>{{notaris_pendirian}}</td></tr>
+    <tr><td></td><td class="label sub">Nomor/Tanggal</td><td class="colon">:</td><td>{{nomor_akte_pendirian}}</td></tr>
+
+    <tr><td>3. </td><td class="label">Akte Perubahan Terakhir</td><td class="colon"></td><td></td></tr>
+    <tr><td></td><td class="label sub">Notaris</td><td class="colon">:</td><td>{{notaris_perubahan}}</td></tr>
+    <tr><td></td><td class="label sub">Nomor/Tanggal</td><td class="colon">:</td><td>{{nomor_akte_perubahan}}</td></tr>
+
+    <tr><td>4. </td><td class="label">STP / STPU</td><td class="colon"></td><td>{{stp}}</td></tr>
+
+    <tr><td></td><td class="label">Tanggal</td><td class="colon">:</td><td>{{stp_tanggal}}</td></tr>
+    <tr><td></td><td class="label">Nomor/Tanggal</td><td class="colon">:</td><td>{{stp_nomor}}</td></tr>
+
+    <tr><td>5. </td><td class="label">Status Organisasi</td><td class="colon">:</td><td>{{status}}</td></tr>
+    <tr><td>6. </td><td class="label">Lingkup Wilayah Kerja</td><td class="colon">:</td><td>{{lingkup}}</td></tr>
+    <tr><td>7. </td><td class="label">Jenis Usaha Kesejahteraan Sosial</td><td class="colon"></td><td></td></tr>
+
+    <tr><td></td><td class="label sub">a. Yang Sedang dilaksanakan</td><td class="colon">:</td><td>{{usaha_jalan}}</td></tr>
+    <tr><td></td><td class="label sub">b. yang akan direncanakan</td><td class="colon">:</td><td>{{usaha_rencana}}</td></tr>
+
+    <tr><td>8. </td><td class="label">Masa Berlaku</td><td class="colon">:</td><td>{{masa}}</td></tr>
+    <tr>
+    <td>9.</td>
+    <td class="label">Dasar Pertimbangan</td>
+    <td class="colon">:</td>
+    <td>
+        <ol style="margin:0; padding-left:18px;">
+            <li>
+                Instrumen<br>
+                Tanggal: {{dasar_tanggal}}<br>
+            </li>
+            <li>
+                Surat Permohonan dari Lembaga Kesejahteraan Sosial {{nama}}<br>
+                Tanggal: {{tanggal_permohonan}}<br>
+                Nomor: {{nomor_permohonan}}
+            </li>
+        </ol>
+    </td>
+</tr>
+</table>
+<br>
+<div class="ttd">
+    <div class="ttd-kanan">
+        Diterbitkan di Lumajang<br>
+        Pada tanggal {{tanggal_ttd}}<br><br>
+
+        <b>KEPALA DINAS SOSIAL, PEMBERDAYAAN PEREMPUAN
+        DAN PERLINDUNGAN ANAK
+        KABUPATEN LUMAJANG</b><br><br><br>
+
+        <br><br><br>
+
+        <b><u>INDRIONO KRISHNA MURTI, AP</u></b><br>
+        Pembina Utama Muda<br>
+        NIP. 19730702 199311 1 001
+    </div>
+</div>
+
+<div style="clear: both;"></div>
+
+
+
+</body>
+</html>
+
