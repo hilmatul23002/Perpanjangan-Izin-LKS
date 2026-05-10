@@ -10,10 +10,6 @@ import base64
 from docxtpl import DocxTemplate, InlineImage
 import tempfile
 from docx.shared import Mm
-from google.oauth2 import service_account
-from googleapiclient.discovery import build
-from googleapiclient.http import MediaFileUpload
-
 
 # Konfigurasi halaman
 st.set_page_config(
@@ -409,17 +405,6 @@ def format_indo(tgl):
 
 FILE_DB = "database/surat.xlsx"
 
-SCOPES = ["https://www.googleapis.com/auth/drive"]
-
-credentials = service_account.Credentials.from_service_account_info(
-    st.secrets["gcp_service_account"],
-    scopes=SCOPES
-)
-
-drive_service = build("drive", "v3", credentials=credentials)
-
-FOLDER_ID = "1a-g5DZM51DMtqkMklrf2T3lpf2Qw3GZ9"
-
 
 # Pastikan folder database ada
 os.makedirs("database", exist_ok=True)
@@ -575,12 +560,6 @@ if menu == "Dashboard":
                 """, unsafe_allow_html=True)
 
             with col2:
-                if isinstance(file_path, str) and file_path.strip() != "":
-                    st.link_button(
-                        "📂 Buka File",
-                        file_path,
-                        key=f"link{i}"
-                    )
                 if st.button("🗑️", key=f"h{i}"):
                     if isinstance(file_path, str) and file_path.strip() != "" and os.path.exists(file_path):
                         os.remove(file_path)
@@ -733,40 +712,7 @@ elif menu == "Buat Surat":
                         for field in fields:
                             if field in st.session_state:
                                 del st.session_state[field]
-        def upload_to_drive(local_file_path, file_name):
-
-            file_metadata = {
-                "name": file_name,
-                "parents": [FOLDER_ID]
-            }
-
-            media = MediaFileUpload(
-                local_file_path,
-                mimetype="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-            )
-
-            uploaded_file = drive_service.files().create(
-                body=file_metadata,
-                media_body=media,
-                fields="id",
-                supportsAllDrives=True
-            ).execute()
-
-            file_id = uploaded_file.get("id")
-
-            # Public read
-            drive_service.permissions().create(
-                fileId=file_id,
-                body={
-                    "type": "anyone",
-                    "role": "reader"
-                },
-                supportsAllDrives=True
-            ).execute()
-
-            file_url = f"https://drive.google.com/file/d/{file_id}/view"
-
-            return file_url
+        
     # ================= GENERATE SURAT (REFACED) =================
         # 1. Tombol Submit (Masuk ke mode konfirmasi)
         if st.button("🚀 Generate Surat"):
@@ -817,15 +763,6 @@ elif menu == "Buat Surat":
                         with open(file_path, "wb") as f:
                             f.write(docx_bytes)
 
-                        # Upload ke Google Drive
-                        drive_link = upload_to_drive(
-                            file_path,
-                            os.path.basename(file_path)
-                        )
-
-                        # Simpan link Drive
-                        data["file_path"] = drive_link
-
                         # Simpan ke Excel
                         try:
                             df_lama = pd.read_excel(FILE_DB, engine="openpyxl")
@@ -846,11 +783,6 @@ elif menu == "Buat Surat":
                             "📄 Download Word",
                             docx_bytes,
                             file_name=os.path.basename(file_path)
-                        )
-
-                        st.link_button(
-                            "📂 Buka File di Google Drive",
-                            drive_link
                         )
 
                         # Reset state
