@@ -4,9 +4,6 @@ __pycache__/
 .streamlit/secrets.toml
 *.json
 
-database/
-surat/
-
 .streamlit/
 streamlit/
 
