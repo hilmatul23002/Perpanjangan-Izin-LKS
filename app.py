@@ -418,7 +418,7 @@ credentials = service_account.Credentials.from_service_account_info(
 
 drive_service = build("drive", "v3", credentials=credentials)
 
-FOLDER_ID = "1ZTd37ewxw2ryOSmgcT2NAckv1J0PkFLs"
+FOLDER_ID = "1a-g5DZM51DMtqkMklrf2T3lpf2Qw3GZ9"
 
 
 # Pastikan folder database ada
@@ -734,6 +734,7 @@ elif menu == "Buat Surat":
                             if field in st.session_state:
                                 del st.session_state[field]
         def upload_to_drive(local_file_path, file_name):
+
             file_metadata = {
                 "name": file_name,
                 "parents": [FOLDER_ID]
@@ -751,10 +752,9 @@ elif menu == "Buat Surat":
                 supportsAllDrives=True
             ).execute()
 
-            # Ambil file ID
             file_id = uploaded_file.get("id")
 
-            # Permission public
+            # Public read
             drive_service.permissions().create(
                 fileId=file_id,
                 body={
