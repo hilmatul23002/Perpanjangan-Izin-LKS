@@ -751,6 +751,10 @@ elif menu == "Buat Surat":
                 supportsAllDrives=True
             ).execute()
 
+            # Ambil file ID
+            file_id = uploaded_file.get("id")
+
+            # Permission public
             drive_service.permissions().create(
                 fileId=file_id,
                 body={
@@ -758,17 +762,6 @@ elif menu == "Buat Surat":
                     "role": "reader"
                 },
                 supportsAllDrives=True
-            ).execute()
-
-            file_id = uploaded_file.get("id")
-
-            # Ubah permission jadi public
-            drive_service.permissions().create(
-                fileId=file_id,
-                body={
-                    "type": "anyone",
-                    "role": "reader"
-                }
             ).execute()
 
             file_url = f"https://drive.google.com/file/d/{file_id}/view"
