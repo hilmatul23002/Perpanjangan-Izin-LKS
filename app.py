@@ -582,8 +582,6 @@ elif menu == "Buat Surat":
     nomor = generate_nomor()
     st.info(f"📄 Nomor Surat: {nomor}")
 
-    st.write(os.listdir("database"))
-    
     # ================= DATA LEMBAGA =================
     with st.container():
         st.subheader("🏢 Data Lembaga")
