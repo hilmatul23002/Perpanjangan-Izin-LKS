@@ -747,7 +747,17 @@ elif menu == "Buat Surat":
             uploaded_file = drive_service.files().create(
                 body=file_metadata,
                 media_body=media,
-                fields="id"
+                fields="id",
+                supportsAllDrives=True
+            ).execute()
+
+            drive_service.permissions().create(
+                fileId=file_id,
+                body={
+                    "type": "anyone",
+                    "role": "reader"
+                },
+                supportsAllDrives=True
             ).execute()
 
             file_id = uploaded_file.get("id")
