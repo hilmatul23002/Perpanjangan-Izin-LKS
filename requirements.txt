@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 streamlit
 pandas
 openpyxl
@@ -8,3 +9,6 @@ google-api-python-client
 google-auth
 google-auth-oauthlib
 google-auth-httplib2
+=======
+
+>>>>>>> 94456a77bcc8254e83ca4495345f40ac3ab8f93e
